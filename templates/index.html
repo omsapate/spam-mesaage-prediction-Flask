@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Spam detector</title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/style.css')}}">
+	<link rel="stylesheet" media="screen" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+</head>
+<body>
+
+	<div id="mainDiv">
+		<h1>Spam Message Prediction with Machine Learning</h1>
+		<form method="POST" role="form">
+
+			<p id="para">Enter message here:</p>
+			<div class="form-group">
+				<textarea name="message" rows="5" cols="50">
+					
+				</textarea>
+
+			</div>
+			
+			<button type="submit" class="btn btn-success">Predict</button>
+		</form>
+		
+
+		<div id="result"> 
+		{% with messages = get_flashed_messages(with_categories=true) %}
+	
+		{% for message in messages %}
+              
+              <div class="alert alert-info" id="msg-id">
+              	Message:{{message[1]}}
+              </div>
+              {%if msg=='spam'%}
+              	<h3><span id="spam">Seems to be a Spam</span></h3>
+              	{%elif msg=='ham'%}
+              	<h3><span id="ham">Seems to be Not a Spam</span></h3>
+              	{%elif msg==""%}
+              	<h3></h3>
+              	{%endif%}
+              
+        {% endfor %}
+        {% endwith %}
+      
+			
+		</div>
+
+		
+
+	</div>
+
+	<footer>
+		<div >
+            <a href="https://www.linkedin.com/in/omsapate/" target="_blank">
+                <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"id="linkedin" ></i>
+            </a>
+
+            <a href="https://github.com/omsapate"  target="_blank">
+                <i class="fa fa-github fa-2x" aria-hidden="true" id="github"></i>
+            </a>
+            
+            <a href="https://www.twitter.com/om_sapate" target="_blank">
+                <i class="fa fa-twitter fa-2x" aria-hidden="true" id="twitter"></i>
+            </a>
+            
+        </div>
+        Made with <i class="fa fa-heart " aria-hidden="true" style="color: red; margin: 0px;"></i> and Machine Learning
+	</footer>
+
+</body>
+</html>

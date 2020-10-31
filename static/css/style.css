@@ -1,0 +1,85 @@
+body{
+	text-align: center;
+}
+
+
+#mainDiv{
+	margin: auto;
+	width: 600px;
+}
+
+#para{
+	margin-top: 50px;
+	margin-bottom: 20px; 
+	font-size: 18px;
+}
+
+textarea{
+	text-align: left;
+	
+	}
+
+button{
+	margin-top: 0px;
+}
+
+#msg-id{
+	width: auto;
+}
+
+span{
+	border:solid 1px black;
+	padding: 4px;
+}
+
+#spam{
+	background-color: #db4e16;
+	color:  white;
+}
+
+#ham{
+	background-color: #19cc12;
+	color: white;
+}
+
+#msg-id{
+	margin: 10px;
+}
+#linkedin{
+    color: #0E76A8;
+}
+
+#github{
+    color: black;
+}
+
+#twitter{
+    color: #00ACEE;
+}
+
+a{
+    background-color: #ffffff;
+    color: white;
+    padding: 5px;
+}
+
+footer{
+	position: fixed;
+	bottom:5px;
+	width: 100%;
+	margin-top:30px;
+}
+
+@media screen and (max-width:600px){
+#mainDiv{
+	width: auto;
+}
+textarea{
+	width: 80%
+}
+
+#result{
+	width: auto;
+}
+
+}
