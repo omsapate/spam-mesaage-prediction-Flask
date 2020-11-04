@@ -9,8 +9,6 @@ Run app.py file to start predictions. <br>
 Note: their are some python packages required. 
 <h2>Requirements</h2>
 <ul>
-<li>nltk==3.5</li>
-<li>joblib==0.16.0</li>
 <li>Flask==1.1.2</li>
 <li>WTForms==2.3.3</li>
 <li>pandas==1.0.5</li>
