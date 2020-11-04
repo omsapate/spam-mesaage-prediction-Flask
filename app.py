@@ -1,8 +1,9 @@
-from flask import Flask,render_template,url_for,request,flash
-from wtforms import Form, TextAreaField
-import joblib
-import test_app
-import os
+from flask import Flask,render_template,request,flash
+import pandas as pd
+from wtforms import Form
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import MultinomialNB
 
 app = Flask(__name__)
 
@@ -20,6 +21,22 @@ app.config['SECRET_KEY'] = "123456789"
 # 			result = model.predict([msg])[0]
 # 	return render_template("index.html",result=result)
 
+def Model(msg):
+	messages = pd.read_csv('smsspamcollection/SMSSpamCollection', sep='\t',names=['labels','message'])
+	messages['labels'] = messages['labels'].map({'ham': 0, 'spam': 1})
+	X= messages['message']
+	y = messages['labels']
+	cv = CountVectorizer()
+	X = cv.fit_transform(X)
+	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
+	classifier = MultinomialNB()
+	classifier.fit(X_train,y_train)
+	vector = cv.transform([msg]).toarray()
+
+	pred = classifier.predict(vector)
+	return pred
+
+
 class ReusableForm(Form):
 	#msg = TextAreaField("message")
 	@app.route('/',methods=['GET','POST'])
@@ -29,8 +46,9 @@ class ReusableForm(Form):
 		result = ""
 		if request.method == 'POST':
 			msg = request.form['message']
-			model= joblib.load('pipeline.pkl')
-			result = model.predict([msg])
+			#model= joblib.load('pipeline.pkl')
+			#result = model.predict([msg])
+			result = Model(msg)
 			result = result[0]
 			flash(" "+msg)
 
@@ -59,4 +77,4 @@ class ReusableForm(Form):
 
 
 if __name__ == '__main__':
-	app.run(debug = True)
+	app.run()

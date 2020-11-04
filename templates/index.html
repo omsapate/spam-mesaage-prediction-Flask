@@ -38,9 +38,9 @@
               <div class="alert alert-info" id="msg-id">
               	Message:{{message[1]}}
               </div>
-              {%if msg=='spam'%}
+              {%if msg==1%}
               	<h3><span id="spam">Seems to be a Spam</span></h3>
-              	{%elif msg=='ham'%}
+              	{%elif msg==0%}
               	<h3><span id="ham">Seems to be Not a Spam</span></h3>
               	{%elif msg==""%}
               	<h3></h3>
